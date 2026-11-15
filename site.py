@@ -13,6 +13,9 @@ SITE = {
     "world_link": ["https://vatsim.net", "VATSIM"],
     # the feed updates every 15 s, so reports can be that old
     "stale_s": 45, "poll_ms": 3000, "world_ms": 15000,
+    # a pilot whose reports stop coasts on 90 s past stale_s, drawn as a guess (hollow, CST), unless low near an airport;
+    # trail dots that follow the aircraft (not stopping, then catching up every 4 s)
+    "coast_s": 90, "smooth_trails": True,
     "start": None,                          # no airport in the URL: open on the whole globe
 }
 
