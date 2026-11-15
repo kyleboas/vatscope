@@ -86,6 +86,18 @@ CapabilityBoundingSet=
 RestrictSUIDSGID=true
 LockPersonality=true
 RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+# The internet only: not the droplet's private network, the tailnet, or the cloud metadata service. Loopback stays
+# open (cloudflared reaches the site there, and DNS is 127.0.0.53), so services on 127.0.0.1 must check who's asking.
+IPAddressDeny=169.254.0.0/16 fe80::/10 224.0.0.0/4 ff00::/8 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 100.64.0.0/10 fc00::/7
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged
+SystemCallErrorNumber=EPERM
+RestrictNamespaces=true
+RestrictRealtime=true
+ProtectHostname=true
+ProtectProc=invisible
+PrivateIPC=true
 MemoryMax=512M
 
 [Install]
